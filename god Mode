@@ -1,0 +1,349 @@
+(function(){
+    /* ========================================
+       SINGLETON CHECK - Prevent Multiple Instances
+       ======================================== */
+    if(document.getElementById('gm-ui')) return;
+    
+    /* ========================================
+       STYLES - All CSS for the panel
+       ======================================== */
+    const s = document.createElement('style');
+    s.textContent = `
+        #gm-ui{position:fixed;top:20px;right:20px;width:320px;background:linear-gradient(135deg,#0f0f0f,#1a1a1a);color:#00ff00;border:2px solid #00ff00;border-radius:12px;z-index:2147483647;font-family:'Courier New',monospace;box-shadow:0 0 30px rgba(0,255,0,0.3);overflow:hidden;max-height:90vh;display:flex;flex-direction:column}
+        #gm-ui *{box-sizing:border-box}
+        #gm-hdr{padding:12px 15px;background:linear-gradient(135deg,#003300,#004400);border-bottom:2px solid #00ff00;display:flex;justify-content:space-between;align-items:center;cursor:move;user-select:none}
+        #gm-hdr b{font-size:14px;letter-spacing:1px}
+        #gm-close{background:none;border:none;color:#00ff00;cursor:pointer;font-weight:bold;font-size:16px;padding:0 5px;transition:color 0.2s}
+        #gm-close:hover{color:#ff0000}
+        #gm-content{padding:12px;overflow-y:auto;flex:1}
+        #gm-content::-webkit-scrollbar{width:8px}
+        #gm-content::-webkit-scrollbar-track{background:#1a1a1a}
+        #gm-content::-webkit-scrollbar-thumb{background:#00ff00;border-radius:4px}
+        #gm-content::-webkit-scrollbar-thumb:hover{background:#00cc00}
+        .gm-section{margin-bottom:15px}
+        .gm-section-title{color:#00ff00;border-bottom:1px solid #00ff00;padding-bottom:5px;margin-bottom:8px;font-weight:bold;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+        .gm-btn{display:block;width:100%;text-align:left;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);border:1px solid #00ff00;color:#ddd;cursor:pointer;padding:10px;font-family:'Courier New',monospace;transition:all 0.2s;margin-bottom:6px;border-radius:4px;font-size:12px}
+        .gm-btn:hover{background:linear-gradient(135deg,#2a2a2a,#3a3a3a);color:#00ff00;border-color:#00ff00;transform:translateX(3px);box-shadow:0 2px 8px rgba(0,255,0,0.2)}
+        .gm-btn:active{transform:translateX(1px)}
+        .gm-status{position:fixed;bottom:20px;left:20px;background:rgba(255,0,0,0.95);color:white;padding:12px 20px;z-index:2147483646;border-radius:8px;font-family:'Courier New',monospace;font-weight:bold;font-size:13px;box-shadow:0 4px 15px rgba(0,0,0,0.5);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 4px 15px rgba(255,0,0,0.5)}50%{box-shadow:0 4px 25px rgba(255,0,0,0.8)}}
+        .gm-highlight{outline:3px dashed #00ff00!important;animation:highlight 1s infinite}
+        @keyframes highlight{0%,100%{outline-color:#00ff00}50%{outline-color:#00ff00}}
+    `;
+    document.head.appendChild(s);
+    
+    /* ========================================
+       UI CREATION - Main panel structure
+       ======================================== */
+    const ui = document.createElement('div');
+    ui.id = 'gm-ui';
+    ui.innerHTML = `<div id="gm-hdr"><b>💀 GOD MODE</b><button id="gm-close">[X]</button></div><div id="gm-content"></div>`;
+    document.body.appendChild(ui);
+    
+    document.getElementById('gm-close').onclick = () => ui.remove();
+    
+    /* ========================================
+       DRAGGABLE FUNCTIONALITY
+       ======================================== */
+    let isDragging = false, offsetX, offsetY;
+    const hdr = document.getElementById('gm-hdr');
+    hdr.onmousedown = e => {
+        isDragging = true;
+        offsetX = e.clientX - ui.offsetLeft;
+        offsetY = e.clientY - ui.offsetTop;
+        hdr.style.cursor = 'grabbing';
+    };
+    document.onmousemove = e => {
+        if(!isDragging) return;
+        ui.style.left = e.clientX - offsetX + 'px';
+        ui.style.top = e.clientY - offsetY + 'px';
+        ui.style.right = 'auto';
+    };
+    document.onmouseup = () => {
+        isDragging = false;
+        hdr.style.cursor = 'move';
+    };
+    
+    /* ========================================
+       HELPER FUNCTIONS
+       ======================================== */
+    const content = document.getElementById('gm-content');
+    
+    function addSection(title, icon) {
+        const div = document.createElement('div');
+        div.className = 'gm-section';
+        div.innerHTML = `<div class="gm-section-title">${icon} ${title}</div>`;
+        content.appendChild(div);
+        return div;
+    }
+    
+    function addBtn(parent, label, action) {
+        const btn = document.createElement('button');
+        btn.className = 'gm-btn';
+        btn.innerHTML = `▶ ${label}`;
+        btn.onclick = action;
+        parent.appendChild(btn);
+    }
+    
+    /* ========================================
+       📸 INSTAGRAM SECTION
+       ======================================== */
+    const igSec = addSection('INSTAGRAM', '📸');
+    
+    addBtn(igSec, 'Inject Download Buttons', () => {
+        if(!location.host.includes('instagram')) {
+            alert('⚠️ Navigate to Instagram first!');
+            return;
+        }
+        const imgs = document.querySelectorAll('img');
+        let c = 0;
+        imgs.forEach(img => {
+            if(img.width < 200 || img.parentNode.querySelector('.gm-dl')) return;
+            const b = document.createElement('button');
+            b.className = 'gm-dl';
+            b.innerHTML = '⬇';
+            b.style = 'position:absolute;top:8px;right:8px;z-index:999;background:rgba(0,255,0,0.9);color:#000;border-radius:50%;width:32px;height:32px;border:2px solid #000;cursor:pointer;font-size:16px;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.5);transition:all 0.2s';
+            b.onmouseover = () => b.style.transform = 'scale(1.1)';
+            b.onmouseout = () => b.style.transform = 'scale(1)';
+            b.onclick = e => {
+                e.stopPropagation();
+                window.open(img.src, '_blank');
+            };
+            const p = img.parentNode;
+            if(getComputedStyle(p).position === 'static') p.style.position = 'relative';
+            p.appendChild(b);
+            c++;
+        });
+        alert(`✅ Injected ${c} download buttons`);
+    });
+    
+    addBtn(igSec, 'Extract Video URLs', () => {
+        if(performance.setResourceTimingBufferSize) performance.setResourceTimingBufferSize(5000);
+        const res = performance.getEntriesByType('resource');
+        const vids = res.filter(r => r.name.includes('.mp4') || r.name.includes('cdninstagram')).sort((a,b) => b.startTime - a.startTime);
+        if(vids.length === 0) {
+            alert('❌ No videos found. Play a video first!');
+            return;
+        }
+        const url = prompt(`✅ Found ${vids.length} video(s)! Copy this URL:`, vids[0].name);
+        if(url) window.open(url, '_blank');
+    });
+    
+    /* ========================================
+       📘 FACEBOOK SECTION
+       ======================================== */
+    const fbSec = addSection('FACEBOOK', '📘');
+    
+    addBtn(fbSec, 'Auto Friend Requests', async () => {
+        if(!location.host.includes('facebook')) {
+            alert('⚠️ Navigate to Facebook first!');
+            return;
+        }
+        if(window.fbRunning) {
+            alert('⚠️ Already running!');
+            return;
+        }
+        const max = parseInt(prompt('How many friends to add? (1-100)', 20));
+        if(!max || max < 1 || max > 100) return;
+        
+        window.fbRunning = true;
+        const statusBox = document.createElement('div');
+        statusBox.className = 'gm-status';
+        statusBox.innerText = 'AUTO-ADD: ACTIVE (0/' + max + ')';
+        document.body.appendChild(statusBox);
+        
+        let count = 0;
+        while(window.fbRunning && count < max) {
+            const btns = Array.from(document.querySelectorAll('div[role="button"]')).filter(b => b.innerText.includes('Add friend') && !b.dataset.done);
+            if(btns.length > 0) {
+                btns[0].dataset.done = 'true';
+                btns[0].scrollIntoView({behavior:'smooth', block:'center'});
+                btns[0].classList.add('gm-highlight');
+                statusBox.innerText = `AUTO-ADD: ACTIVE (${count+1}/${max})`;
+                await new Promise(r => setTimeout(r, 2000));
+                if(!window.fbRunning) break;
+                btns[0].click();
+                count++;
+                await new Promise(r => setTimeout(r, 3000 + Math.random() * 2000));
+            } else {
+                window.scrollBy(0, 400);
+                await new Promise(r => setTimeout(r, 2000));
+            }
+        }
+        statusBox.remove();
+        alert(`✅ Sent ${count} friend requests`);
+        window.fbRunning = false;
+    });
+    
+    addBtn(fbSec, '⛔ Stop Auto-Add', () => {
+        window.fbRunning = false;
+        alert('⛔ Stopped');
+    });
+    
+    /* ========================================
+       💬 SLACK SECTION
+       ======================================== */
+    const slSec = addSection('SLACK', '💬');
+    
+    addBtn(slSec, 'Enable Hover Delete', () => {
+        if(!location.host.includes('slack')) {
+            alert('⚠️ Navigate to Slack first!');
+            return;
+        }
+        if(window.slackObserver) {
+            alert('⚠️ Already enabled!');
+            return;
+        }
+        const box = document.createElement('div');
+        box.className = 'gm-status';
+        box.innerText = 'HOVER DELETE: ACTIVE';
+        document.body.appendChild(box);
+        window.slackStatusBox = box;
+        
+        let timer;
+        window.slackObserver = new MutationObserver(() => {
+            const btn = document.querySelector('[data-qa="more_message_actions"]');
+            if(!btn) return;
+            const msg = btn.closest('[role="listitem"]');
+            if(!msg) return;
+            msg.classList.add('gm-highlight');
+            if(timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+                btn.click();
+                setTimeout(() => {
+                    const del = document.querySelector('[data-qa="delete_message"]');
+                    if(del) del.click();
+                    setTimeout(() => {
+                        const ok = document.querySelector('[data-qa="dialog_go"]');
+                        if(ok) ok.click();
+                    }, 300);
+                }, 300);
+            }, 1500);
+            msg.onmouseleave = () => {
+                clearTimeout(timer);
+                msg.classList.remove('gm-highlight');
+            };
+        });
+        window.slackObserver.observe(document.body, {childList:true, subtree:true});
+        alert('✅ Hover Delete Active!');
+    });
+    
+    addBtn(slSec, 'Disable Hover Delete', () => {
+        if(window.slackObserver) {
+            window.slackObserver.disconnect();
+            window.slackObserver = null;
+            if(window.slackStatusBox) window.slackStatusBox.remove();
+            alert('⛔ Disabled');
+        }
+    });
+    
+    /* ========================================
+       🛠 UTILITIES SECTION
+       ======================================== */
+    const utSec = addSection('UTILITIES', '🛠');
+    
+    addBtn(utSec, 'Element Zapper', () => {
+        alert('🎯 Click any element to delete it. Press ESC to stop.');
+        const handler = e => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.target.remove();
+        };
+        document.addEventListener('click', handler, true);
+        document.addEventListener('keydown', e => {
+            if(e.key === 'Escape') {
+                document.removeEventListener('click', handler, true);
+                alert('⛔ Zap Mode OFF');
+            }
+        }, {once:true});
+    });
+    
+    addBtn(utSec, 'Remove All Images', () => {
+        if(confirm('Remove all images from this page?')) {
+            document.querySelectorAll('img').forEach(img => img.remove());
+            alert('✅ All images removed');
+        }
+    });
+    
+    addBtn(utSec, 'Extract All Links', () => {
+        const links = [...new Set([...document.querySelectorAll('a')].map(a => a.href).filter(h => h && h.startsWith('http')))];
+        if(links.length === 0) {
+            alert('❌ No links found');
+            return;
+        }
+        const w = window.open('', '_blank');
+        w.document.write(`<html><head><title>Extracted Links</title><style>body{font-family:monospace;padding:20px;background:#1a1a1a;color:#00ff00}a{display:block;margin:5px 0;color:#00ff00}</style></head><body><h1>Extracted Links (${links.length})</h1>${links.map(l => `<a href="${l}" target="_blank">${l}</a>`).join('')}</body></html>`);
+    });
+    
+    addBtn(utSec, 'Enable Edit Mode', () => {
+        document.body.contentEditable = true;
+        document.designMode = 'on';
+        alert('✅ Edit mode enabled! Click anywhere to edit text.');
+    });
+    
+    addBtn(utSec, 'Disable Edit Mode', () => {
+        document.body.contentEditable = false;
+        document.designMode = 'off';
+        alert('⛔ Edit mode disabled');
+    });
+    
+    /* ========================================
+       ⚡ ADVANCED SECTION
+       ======================================== */
+    const advSec = addSection('ADVANCED', '⚡');
+    
+    addBtn(advSec, 'Console Logger', () => {
+        if(window.gmLogger) {
+            alert('⚠️ Logger already active');
+            return;
+        }
+        window.gmLogger = true;
+        const original = console.log;
+        const logs = [];
+        console.log = function(...args) {
+            logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
+            original.apply(console, args);
+        };
+        alert('✅ Console logger active. Click "View Logs" to see captured logs.');
+        addBtn(advSec, '📋 View Logs', () => {
+            if(logs.length === 0) {
+                alert('No logs captured yet');
+                return;
+            }
+            const w = window.open('', '_blank');
+            w.document.write(`<html><head><title>Console Logs</title><style>body{font-family:monospace;padding:20px;background:#000;color:#0f0}pre{white-space:pre-wrap}</style></head><body><h1>Captured Logs (${logs.length})</h1><pre>${logs.join('\n')}</pre></body></html>`);
+        });
+    });
+    
+    addBtn(advSec, 'Performance Stats', () => {
+        const perf = performance.timing;
+        const stats = {
+            pageLoadTime: perf.loadEventEnd - perf.navigationStart + 'ms',
+            domReadyTime: perf.domContentLoadedEventEnd - perf.navigationStart + 'ms',
+            resources: performance.getEntriesByType('resource').length
+        };
+        alert(`⚡ Performance Stats:\n\nPage Load: ${stats.pageLoadTime}\nDOM Ready: ${stats.domReadyTime}\nResources: ${stats.resources}`);
+    });
+    
+    /* ========================================
+       💼 ADD YOUR LINKEDIN SECTION HERE!
+       Copy the pattern below:
+       ======================================== */
+    /*
+    const liSec = addSection('LINKEDIN', '💼');
+    
+    addBtn(liSec, 'Your Feature Name', () => {
+        if(!location.host.includes('linkedin')) {
+            alert('⚠️ Navigate to LinkedIn first!');
+            return;
+        }
+        // Your LinkedIn automation code here
+        alert('✅ Feature executed!');
+    });
+    
+    addBtn(liSec, 'Another Feature', async () => {
+        // Your async LinkedIn code here
+    });
+    */
+    
+})();
