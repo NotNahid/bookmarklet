@@ -1,4 +1,4 @@
-# Bookmarklet Studio
+# Bookmarklet Studio.
 
 Professional browser automation at your fingertips.
 
