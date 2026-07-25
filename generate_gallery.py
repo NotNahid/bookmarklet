@@ -254,14 +254,15 @@ def generate_html(categories):
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-bold text-zinc-100 mb-6 leading-tight">${script.name}</h3>
+                            <h3 class="text-xl font-bold text-zinc-100 mb-2 leading-tight">${script.name}</h3>
+                            <p class="text-[11px] text-zinc-500 mb-6">Drag the button below to install</p>
                         </div>
                         <div class="mt-auto">
                             <a href="${script.bookmarklet}" 
                                class="bookmarklet-btn block w-full py-4 rounded-xl text-center text-black font-extrabold text-sm shadow-xl"
                                onclick="return false;" 
-                               title="Drag this button to your bookmarks bar">
-                                <i class="fas fa-hand-pointer mr-2 opacity-70"></i> Drag to Bookmarks
+                               title="Drag to your bookmarks bar">
+                                ${script.name}
                             </a>
                         </div>
                     `;
