@@ -1,371 +1,57 @@
-<div align="center">
+# Bookmarklet Studio
 
-# ⚡ JavaScript Bookmarklet Collection
+Professional browser automation at your fingertips. This repository is a curated collection of JavaScript bookmarklets designed to automate repetitive tasks, enhance workflows, and improve productivity across various platforms.
 
-### Browser Automation • Bookmarklets • Productivity Tools • Media Downloaders
+## Interactive Gallery
 
-<p>
-A curated collection of browser-based JavaScript bookmarklets for automating repetitive tasks, downloading media, enhancing workflows, and improving productivity across popular websites.
-</p>
+For a better user experience, browse the interactive gallery where you can search for scripts and install them by dragging buttons directly to your bookmarks bar:
 
-<br>
-
-![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![MIT License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
-![Browser](https://img.shields.io/badge/Browser-Chrome%20%7C%20Edge%20%7C%20Firefox-4285F4?style=for-the-badge)
-![Bookmarklets](https://img.shields.io/badge/Bookmarklets-100%25-blueviolet?style=for-the-badge)
-
-</div>
+**[Launch Bookmarklet Studio](https://NotNahid.github.io/bookmarklet/)**
 
 ---
 
-# 📖 Table of Contents
+## Getting Started
 
-- [Features](#-features)
-- [Repository Structure](#-repository-structure)
-- [Getting Started](#-getting-started)
-- [Supported Platforms](#-supported-platforms)
-- [Featured Tools](#-featured-tools)
-- [Safety](#-safety)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
+### Installation via Gallery (Recommended)
+1. Visit the [Bookmarklet Studio](https://NotNahid.github.io/bookmarklet/) gallery.
+2. Find the script you need.
+3. Drag the blue "Drag to Bookmarks" button to your browser's bookmarks bar.
 
----
-
-# ✨ Features
-
-- ⚡ One-click browser bookmarklets
-- 🌐 Runs directly inside your browser
-- 🚀 No extensions required
-- ❤️ Automation for repetitive tasks
-- 📥 Media downloading utilities
-- 🧠 Smart UI overlays
-- 💼 Productivity enhancements
-- 🔍 OSINT helpers
-- 🛠 Lightweight and easy to customize
-- 📂 Organized by platform
-
----
-
-# 📂 Repository Structure
-
-```text
-.
-├── CRM
-├── Daraz
-├── Facebook
-├── Github
-├── Instagram
-├── Medium
-├── OSINT
-├── Outside
-├── Pinterest
-├── Slack
-├── Webpage
-├── YouTube
-├── Call with Link one Liner.js
-├── GOD-MODE.js
-├── Godmode Tempermonkey Format.js
-├── LICENSE
-└── README.md
-```
-
----
-
-# 🚀 Getting Started
-
-Bookmarklets are simple JavaScript programs that run directly from your browser's bookmarks.
-
-## Installation
-
+### Manual Installation
 1. Open any `.js` file in this repository.
-2. Copy the entire contents.
-3. Create a new bookmark.
-4. Paste the code into the **URL** field.
-5. Save the bookmark.
-6. Visit the supported website.
-7. Click the bookmark.
-
-That's it.
+2. Copy the entire code.
+3. Create a new bookmark in your browser.
+4. Paste the code into the **URL** field of the bookmark.
+5. Save and click the bookmark while on the target website.
 
 ---
 
-# 🌍 Supported Platforms
+## Automation & Infrastructure
 
-| Platform | Description |
-|-----------|-------------|
-| 📸 Instagram | Download media, automate interactions, smart utilities |
-| 📘 Facebook | Friend request automation, helpers |
-| 📌 Pinterest | Auto Heart, GUI tools |
-| 🐙 GitHub | Repository utilities |
-| 💬 Slack | Message management |
-| 🎥 YouTube | Creator workflow tools |
-| ✍️ Medium | Auto clap utilities |
-| 🛒 Daraz | Shopping helpers |
-| 💼 CRM | Internal productivity scripts |
-| 🔍 OSINT | Information gathering |
-| 🌐 Webpage | Universal browser utilities |
-| 📁 Outside | Miscellaneous experiments |
+This repository is powered by an automated build system:
+- **`generate_gallery.py`**: A Python engine that parses the repository and builds the interactive HTML gallery.
+- **GitHub Actions**: Automatically rebuilds and deploys the gallery to GitHub Pages whenever a new script is pushed.
 
 ---
 
-# ⭐ Featured Tools
+## Supported Platforms
 
-<details>
-
-<summary><strong>📸 Instagram</strong></summary>
-
-### Universal Downloader
-
-Download images and videos directly from Instagram.
-
-#### Features
-
-- High Resolution Images
-- Reel Downloader
-- Video Downloader
-- Story Support
-- Smart Network Detection
-- MP4 Extraction
-- Live Stream Detection
-
-</details>
+The collection includes specialized tools for:
+- **Social Media**: Instagram, Facebook, Pinterest.
+- **Developer Tools**: GitHub, Slack, Webpage manipulation.
+- **Productivity**: CRM shortcuts, OSINT utilities, Medium automators.
+- **Commerce**: Daraz invoice helpers and shopping utilities.
 
 ---
 
-<details>
+## Safety & Disclaimer
 
-<summary><strong>📌 Pinterest</strong></summary>
-
-Automation utilities including
-
-- Auto Heart
-- Floating GUI
-- Bulk Reactions
-- Smart Detection
-
-</details>
+- **Execution**: These scripts run entirely within your local browser environment.
+- **Responsibility**: You are solely responsible for how you use these tools. Ensure your use cases comply with the Terms of Service of the respective platforms.
+- **Review**: Always review script source code before execution to understand the actions being performed.
 
 ---
 
-<details>
+## License
 
-<summary><strong>📘 Facebook</strong></summary>
-
-Automation tools
-
-- Auto Friend Requests
-- Auto Scroll
-- Human-like Delays
-- Safety Limits
-- Bulk Interaction
-
-</details>
-
----
-
-<details>
-
-<summary><strong>💬 Slack</strong></summary>
-
-Workspace productivity
-
-- Hover Delete
-- Floating Toggle
-- Draggable Interface
-- Delay Protection
-
-</details>
-
----
-
-<details>
-
-<summary><strong>🐙 GitHub</strong></summary>
-
-Developer utilities
-
-- Star Repository
-- Repository Helpers
-- Productivity Scripts
-
-</details>
-
----
-
-<details>
-
-<summary><strong>🎥 YouTube</strong></summary>
-
-Creator tools
-
-- Auto Channel Creator
-- Shortcuts
-- Workflow Automation
-
-</details>
-
----
-
-<details>
-
-<summary><strong>✍️ Medium</strong></summary>
-
-Utilities
-
-- Auto Clap
-- Reading Helpers
-
-</details>
-
----
-
-<details>
-
-<summary><strong>💼 CRM</strong></summary>
-
-Productivity bookmarklets for CRM systems.
-
-</details>
-
----
-
-<details>
-
-<summary><strong>🔍 OSINT</strong></summary>
-
-Small utilities for reconnaissance and information gathering.
-
-</details>
-
----
-
-<details>
-
-<summary><strong>🌐 Universal Browser Utilities</strong></summary>
-
-Includes
-
-- Better Scrolling
-- Page Manipulation
-- UI Helpers
-- General Productivity
-
-</details>
-
----
-
-# 🛡 Safety
-
-These bookmarklets execute **entirely inside your browser**.
-
-No external servers are used by these scripts unless the website itself communicates with its own services.
-
-Always review scripts before running them.
-
-Some websites may detect excessive automation or enforce rate limits.
-
-Use responsibly.
-
----
-
-# ⚠ Disclaimer
-
-This project is intended for educational, automation, and productivity purposes.
-
-Using these bookmarklets may violate the Terms of Service of certain websites.
-
-You are solely responsible for how you use these scripts.
-
----
-
-# 🗺️ Roadmap
-
-- [x] Instagram Downloader
-- [x] Facebook Automation
-- [x] Pinterest Automation
-- [x] Slack Utilities
-- [x] GitHub Helpers
-- [x] Medium Tools
-- [x] CRM Scripts
-- [x] OSINT Utilities
-- [ ] Chrome Extension
-- [ ] Firefox Add-on
-- [ ] Documentation Website
-- [ ] Interactive Demo Gallery
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome.
-
-You can help by:
-
-- Adding new bookmarklets
-- Improving existing scripts
-- Fixing bugs
-- Improving documentation
-- Suggesting new ideas
-
-Please open an **Issue** or submit a **Pull Request**.
-
----
-
-# 📊 Repository Statistics
-
-| Category | Count |
-|-----------|------:|
-| Supported Platforms | 12+ |
-| JavaScript Files | 30+ |
-| Browser Support | Chrome • Edge • Firefox |
-| Installation | Bookmark |
-
----
-
-# ❓ FAQ
-
-<details>
-<summary><strong>Do I need an extension?</strong></summary>
-
-No.
-
-Everything runs directly inside your browser using bookmarklets.
-
-</details>
-
-<details>
-<summary><strong>Are these scripts safe?</strong></summary>
-
-They execute locally inside your browser.
-
-Always inspect the code before using any bookmarklet.
-
-</details>
-
-<details>
-<summary><strong>Can I modify the scripts?</strong></summary>
-
-Absolutely.
-
-Feel free to customize them for your own workflow.
-
-</details>
-
-<details>
-<summary><strong>Do these work on every website?</strong></summary>
-
-No.
-
-Each script is built specifically for its intended platform.
-
-</details>
-
----
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
-
-See the [LICENSE](LICENSE) file for complete details.
+This project is licensed under the [MIT License](LICENSE).
