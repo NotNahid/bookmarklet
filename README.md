@@ -8,11 +8,7 @@ Professional browser automation at your fingertips.
 
 ---
 
-[<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/bb4ae652-2593-40f6-a225-5cd1a797cb7a" />
-![Uploading image.png…]()
-](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlpamF1NmpqazBoOGljYWt6dHd4eW1iY3F6ZjhjaGQzcm85MjlwcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dHcxGGEBYsqLzHtEQv/giphy.gif)
-
-
+![Bookmarklet Studio Demo](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlpamF1NmpqazBoOGljYWt6dHd4eW1iY3F6ZjhjaGQzcm85MjlwcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dHcxGGEBYsqLzHtEQv/giphy.gif)
 ### Overview
 A curated collection of JavaScript bookmarklets designed for high-performance browser automation. This repository provides specialized tools for social media management, developer productivity, and workflow enhancement.
 
