@@ -8,7 +8,9 @@ Professional browser automation at your fingertips.
 
 ---
 
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/bb4ae652-2593-40f6-a225-5cd1a797cb7a" />
 ![Uploading image.png…]()
+
 
 
 ### Overview
