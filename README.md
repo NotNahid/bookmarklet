@@ -1,6 +1,6 @@
 # Bookmarklet Studio.
 
-Professional browser automation at your fingertips.
+Professional browser automation at your fingertips..
 
 [![Launch Studio](https://img.shields.io/badge/Launch_Studio-000000?style=for-the-badge&logo=lightning&logoColor=white&border=18181b)](https://NotNahid.github.io/bookmarklet/)
 [![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge&border=18181b)](LICENSE)
