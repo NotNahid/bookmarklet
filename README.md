@@ -6,7 +6,8 @@ A polished, open-source collection of browser bookmarklets for automation, produ
 [![License: MIT](https://img.shields.io/badge/License-MIT-111827?style=for-the-badge)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/NotNahid/bookmarklet?style=for-the-badge&color=f59e0b)](https://github.com/NotNahid/bookmarklet/stargazers)
 
-![Bookmarklet Studio preview](https://github.com/user-attachments/assets/57ecf6e6-2c72-4a88-8206-248765245c0f)
+<img width="1920" height="951" alt="image" src="https://github.com/user-attachments/assets/6474e0e5-adb5-44fd-b4f7-8e3f220a3b42" />
+
 ![Bookmarklet Studio Demo](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlpamF1NmpqazBoOGljYWt6dHd4eW1iY3F6ZjhjaGQzcm85MjlwcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dHcxGGEBYsqLzHtEQv/giphy.gif)
 
 ## Overview
