@@ -8,7 +8,7 @@ A polished, open-source collection of browser bookmarklets for automation, produ
 
 ![Bookmarklet Studio preview](https://github.com/user-attachments/assets/57ecf6e6-2c72-4a88-8206-248765245c0f)
 ![Bookmarklet Studio Demo](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGlpamF1NmpqazBoOGljYWt6dHd4eW1iY3F6ZjhjaGQzcm85MjlwcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dHcxGGEBYsqLzHtEQv/giphy.gif)
-<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/57ecf6e6-2c72-4a88-8206-248765245c0f" />
+
 ## Overview
 
 Bookmarklet Studio turns a folder of JavaScript files into a searchable browser-based library. Open the gallery, find a tool, and drag its blue action button to your bookmarks bar. The resulting bookmarklet runs on the page you are currently viewing.
