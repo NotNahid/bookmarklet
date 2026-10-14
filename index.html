@@ -47,6 +47,21 @@
         body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
             background: var(--wall-img) center bottom / cover no-repeat; }
         body { --wall-img: var(--tahoe-img); } body[data-wall="bright"] { --wall-img: var(--bright-img); } body[data-wall="hills"] { --wall-img: var(--hills-img); }
+        /* Manual theme choices override the system preference and persist locally. */
+        body[data-theme="light"] {
+            color-scheme: light; --wall: #cbc7bf; --win: #f6f6f8; --side: #ececf1;
+            --card: #ffffff; --card-hi: #fbfbfd; --line: rgba(60,60,67,0.16); --line-soft: rgba(60,60,67,0.09);
+            --text: #1d1d1f; --text-2: #6e6e73; --text-3: #8e8e93; --accent: #0a84ff; --accent-press: #0071e3;
+            --field: rgba(118,118,128,0.12); --sel: rgba(10,132,255,0.16); --shadow-win: 0 12px 36px rgba(30,30,60,0.25), 0 0 0 0.5px rgba(0,0,0,0.25);
+            --code-bg: #1e1e20; --code-text: #e6e6ea;
+        }
+        body[data-theme="dark"] {
+            color-scheme: dark; --wall: #191a1c; --win: #242428; --side: #2d2d32;
+            --card: #2c2c30; --card-hi: #323237; --line: rgba(255,255,255,0.14); --line-soft: rgba(255,255,255,0.07);
+            --text: #f5f5f7; --text-2: #a1a1a6; --text-3: #8e8e93; --accent: #0a84ff; --accent-press: #409cff;
+            --field: rgba(118,118,128,0.28); --sel: rgba(10,132,255,0.30); --shadow-win: 0 12px 36px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(255,255,255,0.18);
+            --code-bg: #141416; --code-text: #e6e6ea;
+        }
         button { font: inherit; color: inherit; }
         :focus-visible { outline: 3px solid var(--sel); outline-offset: 1px; }
 
@@ -269,9 +284,9 @@
 
         .tb-right { justify-self: end; display: flex; align-items: center; gap: 8px; width: 100%; max-width: 280px; }
         .tb-right .search { justify-self: auto; flex: 1; min-width: 0; }
-        .wall-btn { flex: none; width: 28px; height: 28px; border: 0; border-radius: 8px; background: var(--field); color: var(--text-2); display: grid; place-items: center; cursor: default; transition: transform .3s var(--spring), color .15s; }
-        .wall-btn:hover { color: var(--text); transform: rotate(-12deg) scale(1.12); }
-        .wall-btn:active { transform: scale(.88); }
+        .wall-btn, .theme-btn { flex: none; width: 28px; height: 28px; border: 0; border-radius: 8px; background: var(--field); color: var(--text-2); display: grid; place-items: center; cursor: pointer; transition: transform .3s var(--spring), color .15s, background .2s; }
+        .wall-btn:hover, .theme-btn:hover { color: var(--text); transform: rotate(-12deg) scale(1.12); }
+        .wall-btn:active, .theme-btn:active { transform: scale(.88); }
         @media (max-width: 800px) {
             body { padding: 0; }
             .window { border-radius: 0; }
@@ -294,7 +309,7 @@
         <div class="titlebar">
             <div class="lights"><button class="dot r" id="btnClose" data-g="&times;" aria-label="Close"></button><button class="dot y" id="btnMin" data-g="&minus;" aria-label="Minimize"></button><button class="dot g" id="btnMax" data-g="+" aria-label="Zoom"></button></div>
             <div class="win-title"><i class="fas fa-bookmark"></i> Bookmarklet Studio</div>
-            <div class="tb-right"><button class="wall-btn" id="wallBtn" title="Change wallpaper" aria-label="Change wallpaper"><i class="fas fa-image"></i></button>
+            <div class="tb-right"><button class="theme-btn" id="themeBtn" title="Switch theme" aria-label="Switch theme"><i class="fas fa-moon"></i></button><button class="wall-btn" id="wallBtn" title="Change wallpaper" aria-label="Change wallpaper"><i class="fas fa-image"></i></button>
             <label class="search">
                 <i class="fas fa-search"></i>
                 <input type="search" id="searchInput" placeholder="Search  ( / )" autocomplete="off" aria-label="Search bookmarklets">
@@ -338,7 +353,7 @@
         </div>
 
         <div class="foot">
-            <span>Last synced 2026-10-14 05:39:00</span>
+            <span>Last synced 2026-10-14 05:47:23</span>
             <a href="https://github.com/NotNahid/bookmarklet" target="_blank" rel="noopener">View source on GitHub</a>
         </div>
     </div>
@@ -529,6 +544,29 @@
                 document.body.appendChild(p);
             }
         }
+
+        // theme switcher (remembers your pick; defaults to the system preference)
+        const themeBtn = document.getElementById('themeBtn');
+        function systemTheme() { return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+        function applyTheme(theme, say) {
+            const resolved = theme === 'system' ? systemTheme() : theme;
+            document.body.dataset.theme = resolved;
+            themeBtn.innerHTML = resolved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            themeBtn.title = theme === 'system' ? 'Switch theme (system)' : 'Switch to ' + (resolved === 'dark' ? 'light' : 'dark') + ' theme';
+            themeBtn.setAttribute('aria-label', themeBtn.title);
+            try { localStorage.setItem('studio-theme', theme); } catch (e) {}
+            if (say) toast((theme === 'system' ? 'System' : resolved[0].toUpperCase() + resolved.slice(1)) + ' theme');
+        }
+        let savedTheme = 'system';
+        try { savedTheme = localStorage.getItem('studio-theme') || 'system'; } catch (e) {}
+        applyTheme(['system', 'light', 'dark'].includes(savedTheme) ? savedTheme : 'system', false);
+        themeBtn.onclick = () => {
+            const current = document.body.dataset.theme;
+            applyTheme(current === 'dark' ? 'light' : 'dark', true);
+        };
+        matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => {
+            try { if (localStorage.getItem('studio-theme') === 'system') applyTheme('system', false); } catch (e) {}
+        });
 
         // wallpaper switcher (remembers your pick)
         const WALLS = [['tahoe', 'Tahoe (default)'], ['bright', 'Bright'], ['hills', 'Hills 🌄']];
