@@ -1,4 +1,4 @@
-## Bookmarklet Studio
+# Bookmarklet Studio
 
 A polished, open-source collection of browser bookmarklets for automation, productivity, web research, and developer workflows.
 
